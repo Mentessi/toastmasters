@@ -1,0 +1,17 @@
+<section>
+  <h1>Topics</h1>
+
+  <p>Feel free to use any of our topics in your own Toastmasters meeting.</p>
+
+  <table>
+    <tr>
+      <th>Topic</th>
+    </tr>
+    <% @topics.each do |topic| %>
+    <tr>
+      <td><%= topic.body %></td>
+    </tr>
+    <% end %>
+  </table>
+
+</section>
