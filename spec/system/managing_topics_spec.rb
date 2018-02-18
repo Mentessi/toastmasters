@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'visiting topics page' do
+RSpec.describe 'managing topics' do
   before do
     FactoryBot.create(:topic, name: 'What is your favourite colour')
   end
