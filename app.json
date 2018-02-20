@@ -1,7 +1,7 @@
    {
   "name": "toastmasters",
   "scripts": {
-    "postdeploy": "bundle exec rake db:schema:load db:seed"
+    "postdeploy": "bin/heroku-postdeploy"
   },
   "env": {
     "LANG": {
