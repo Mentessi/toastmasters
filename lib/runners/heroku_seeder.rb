@@ -1,6 +1,6 @@
 class HerokuSeeder
   def self.run
-    topic = Topic.create!(body: "Where do you live?")
+    topic = Topic.create!(name: "Where do you live?")
   end
 end
 

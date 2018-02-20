@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'visiting topics page' do
   before do
-    FactoryBot.create(:topic, body: 'What is your favourite colour')
+    FactoryBot.create(:topic, name: 'What is your favourite colour')
   end
 
   scenario 'when viewing' do
