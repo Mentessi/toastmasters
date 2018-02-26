@@ -27,4 +27,11 @@ RSpec.describe 'managing topics' do
     expect(current_path).to eq topic_path(topic)
     expect(page).to have_content('Topic:')
   end
+
+  scenario 'when deleting a topic' do
+    visit topic_path(topic)
+    click_on 'Delete Topic'
+    expect(current_path).to eq topics_path
+    expect(page).to have_no_content('What is your favourite colour')
+  end
 end
