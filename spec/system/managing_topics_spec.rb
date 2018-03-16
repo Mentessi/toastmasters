@@ -35,4 +35,15 @@ RSpec.describe 'managing topics' do
     expect(current_path).to eq topics_path
     expect(page).to have_no_content 'What is your favourite colour'
   end
+
+  scenario 'when editing a topic' do
+    visit topic_path(@topic.id)
+    click_link 'Edit Topic'
+    expect(current_path).to eq edit_topic_path(@topic.id)
+    expect(page).to have_content 'What is your favourite colour'
+    fill_in 'Name', with: 'this is my new topic'
+    click_button 'Update Topic'
+    expect(current_path).to eq topic_path(@topic.id)
+    expect(page).to have_content 'this is my new topic'
+  end
 end
