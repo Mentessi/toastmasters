@@ -17,11 +17,7 @@ class TopicsController < ApplicationController
   end
 
   def show
-    @topic = Topic.find_by_id(params[:id])
-
-    if @topic.nil?
-      redirect_to topics_path
-    end
+    @topic = Topic.find(params[:id])
   end
 
   private
