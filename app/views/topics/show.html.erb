@@ -3,6 +3,6 @@
 
   <h2> <%= @topic.name %></h2>
 
-  <%= button_to 'Delete Topic', {action: "destroy", id:(@topic.id)},method: :delete %>
+  <%= button_to 'Delete Topic', {action: "destroy", id:(@topic.id)},method: :delete, data: { confirm: "Are you sure?" } %>
 
 </section>

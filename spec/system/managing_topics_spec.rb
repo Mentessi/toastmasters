@@ -30,8 +30,9 @@ RSpec.describe 'managing topics' do
 
   scenario 'when deleting a topic' do
     visit topic_path(topic)
-    click_on 'Delete Topic'
+    # expect {click_on 'Delete Topic'}.to change(Topic, :count).by(-1)
+    accept_confirm { click_on 'Delete Topic' }
     expect(current_path).to eq topics_path
-    expect(page).to have_no_content('What is your favourite colour')
+    expect(page).to have_no_content 'What is your favourite colour'
   end
 end
