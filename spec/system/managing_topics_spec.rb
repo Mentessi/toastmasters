@@ -1,12 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe 'managing topics' do
-  before do
-    FactoryBot.create(:topic, name: 'What is your favourite colour')
-  end
+
+  let!(:topic) { FactoryBot.create :topic, name: 'What is your favourite colour'}
 
   scenario 'when viewing' do
-    visit('/topics')
+    visit topics_path
     expect(page).to have_content('Topics')
     expect(page).to have_content('What is your favourite colour')
   end
@@ -20,5 +19,12 @@ RSpec.describe 'managing topics' do
     click_button 'Create'
     expect(current_path).to eq topics_path
     expect(page).to have_content 'tell us a story'
+  end
+
+  scenario 'viewing a topic' do
+    visit topics_path
+    click_on('What is your favourite colour')
+    expect(current_path).to eq topic_path(topic)
+    expect(page).to have_content('Topic:')
   end
 end
