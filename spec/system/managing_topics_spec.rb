@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe 'managing topics' do
 
   let!(:topic) { FactoryBot.create :topic, name: 'What is your favourite colour'}
+  let!(:user) { FactoryBot.create :user}
 
   scenario 'when viewing' do
     visit topics_path
@@ -11,6 +12,10 @@ RSpec.describe 'managing topics' do
   end
 
   scenario 'when creating a topic' do
+    visit topics_path
+    click_link 'New Topic'
+    expect(page).to have_content('You need to sign in or sign up before continuing')
+    sign_in user
     visit topics_path
     click_link 'New Topic'
     click_button 'Create'
@@ -30,6 +35,10 @@ RSpec.describe 'managing topics' do
 
   scenario 'when deleting a topic' do
     visit topic_path(topic)
+    accept_confirm { click_on 'Delete Topic' }
+    expect(page).to have_content('You need to sign in or sign up before continuing')
+    sign_in user
+    visit topic_path(topic)
     expect {
       accept_confirm { click_on 'Delete Topic' }
       expect(current_path).to eq topics_path
@@ -38,6 +47,10 @@ RSpec.describe 'managing topics' do
   end
 
   scenario 'when editing a topic' do
+    visit topic_path(topic)
+    click_link 'Edit Topic'
+    expect(page).to have_content('You need to sign in or sign up before continuing')
+    sign_in user
     visit topic_path(topic)
     click_link 'Edit Topic'
     expect(current_path).to eq edit_topic_path(topic)
