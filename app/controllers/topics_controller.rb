@@ -34,7 +34,6 @@ class TopicsController < ApplicationController
     if @topic.update(topic_params)
       redirect_to topic_path
     else
-      @topic.name = Topic.find(params[:id]).name
       render :edit
     end
   end
