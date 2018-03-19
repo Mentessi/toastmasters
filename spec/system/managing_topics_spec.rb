@@ -51,6 +51,10 @@ RSpec.describe 'managing topics' do
     sign_in user
     visit topic_path(topic)
     click_link 'Edit Topic'
+    expect(page).to have_content('You need to sign in or sign up before continuing')
+    sign_in user
+    visit topic_path(topic)
+    click_link 'Edit Topic'
     expect(current_path).to eq edit_topic_path(topic)
     expect(page).to have_content 'What is your favourite colour'
     fill_in 'Name', with: ''
