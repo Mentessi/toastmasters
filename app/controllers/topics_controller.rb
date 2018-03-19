@@ -1,6 +1,6 @@
 class TopicsController < ApplicationController
 
-  before_action :topic_find, only: [:show, :edit, :update]
+  before_action :find_topic, only: [:show, :edit, :update]
 
   def index
     @topics = Topic.all
@@ -41,7 +41,7 @@ class TopicsController < ApplicationController
 
   private
 
-  def topic_find
+  def find_topic
     @topic = Topic.find(params[:id])
   end
 
