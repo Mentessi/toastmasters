@@ -36,4 +36,18 @@ RSpec.describe 'managing topics' do
     }.to change(Topic, :count).by(-1)
     expect(page).to have_no_content 'What is your favourite colour'
   end
+
+  scenario 'when editing a topic' do
+    visit topic_path(topic)
+    click_link 'Edit Topic'
+    expect(current_path).to eq edit_topic_path(topic)
+    expect(page).to have_content 'What is your favourite colour'
+    fill_in 'Name', with: ''
+    click_button 'Update Topic'
+    expect(page).to have_content "Name can't be blank"
+    fill_in 'Name', with: 'this is my new topic'
+    click_button 'Update Topic'
+    expect(current_path).to eq topic_path(topic)
+    expect(page).to have_content 'this is my new topic'
+  end
 end

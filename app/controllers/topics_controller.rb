@@ -1,4 +1,7 @@
 class TopicsController < ApplicationController
+
+  before_action :find_topic, only: [:show, :edit, :update]
+
   def index
     @topics = Topic.all
   end
@@ -17,7 +20,6 @@ class TopicsController < ApplicationController
   end
 
   def show
-    @topic = Topic.find(params[:id])
   end
 
   def destroy
@@ -25,7 +27,22 @@ class TopicsController < ApplicationController
     redirect_to topics_path
   end
 
+  def edit
+  end
+
+  def update
+    if @topic.update(topic_params)
+      redirect_to topic_path
+    else
+      render :edit
+    end
+  end
+
   private
+
+  def find_topic
+    @topic = Topic.find(params[:id])
+  end
 
   def topic_params
     params.require(:topic).permit(:name)
