@@ -37,6 +37,8 @@ gem 'shoulda'
 # Styling
 gem 'materialize-sass'
 
+gem 'rubocop', '~> 0.54.0', require: false
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
