@@ -35,8 +35,7 @@ RSpec.describe 'managing topics' do
 
   scenario 'when deleting a topic' do
     visit topic_path(topic)
-    accept_confirm { click_on 'Delete Topic' }
-    expect(page).to have_content('You need to sign in or sign up before continuing')
+    expect(page).to have_no_content 'Delete Topic'
     sign_in user
     visit topic_path(topic)
     expect {
@@ -48,8 +47,7 @@ RSpec.describe 'managing topics' do
 
   scenario 'when editing a topic' do
     visit topic_path(topic)
-    click_link 'Edit Topic'
-    expect(page).to have_content('You need to sign in or sign up before continuing')
+    expect(page).to have_no_content 'Edit Topic'
     sign_in user
     visit topic_path(topic)
     click_link 'Edit Topic'
