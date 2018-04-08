@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :topic do
-    user
     name "What is your secret superpower?"
+    user
   end
 end

@@ -1,7 +1,7 @@
 class TopicsController < ApplicationController
 
-  before_action :find_topic, only: [:show, :edit, :update]
   before_action :authenticate_user!, only: [:new, :destroy, :create, :edit, :update]
+  before_action :set_current_user_topic, only: [:update, :destroy, :edit]
 
   def index
     @topics = Topic.all
@@ -12,8 +12,7 @@ class TopicsController < ApplicationController
   end
 
   def create
-    @topic = Topic.create(topic_params)
-    @topic.user_id = current_user.id
+    @topic = current_user.topics.new(topic_params)
     if @topic.save
       redirect_to topics_path
     else
@@ -22,14 +21,16 @@ class TopicsController < ApplicationController
   end
 
   def show
+    @topic = Topic.find(params[:id])
   end
 
   def destroy
-    Topic.find(params[:id]).destroy
+    @topic.destroy
     redirect_to topics_path
   end
 
   def edit
+    render :edit
   end
 
   def update
@@ -42,8 +43,8 @@ class TopicsController < ApplicationController
 
   private
 
-  def find_topic
-    @topic = Topic.find(params[:id])
+  def set_current_user_topic
+    @topic = current_user.topics.find(params[:id])
   end
 
   def topic_params

@@ -3,7 +3,7 @@
 
   <h2> <%= @topic.name %></h2>
 
-  <% if user_signed_in? %>
+  <% if @topic.user == current_user %>
     <%= button_to 'Delete Topic', topic_path(@topic), method: :delete, data: { confirm: "Are you sure?" } %>
     <%= link_to 'Edit Topic', edit_topic_path(@topic.id) %>
   <% end %>
