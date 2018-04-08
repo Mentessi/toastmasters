@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'topics' do
+RSpec.describe Topic, type: :model do
 
   context 'name' do
     it "is required" do
@@ -12,5 +12,9 @@ RSpec.describe 'topics' do
   context 'factory' do
     subject { FactoryBot.build(:topic) }
     it { is_expected.to be_valid }
+  end
+
+  describe 'association' do
+    it { should belong_to(:user) }
   end
 end
