@@ -1,7 +1,3 @@
 export PORT=3000
-export MAILGUN_SMTP_PORT=587
-export MAILGUN_SMTP_SERVER=smtp.mailgun.org
-export MAILGUN_SMTP_LOGIN=postmaster@sandboxd.mailgun.org
-export MAILGUN_SMTP_PASSWORD=Password
-MAILGUN_API_KEY=Key
-MAILGUN_PUBLIC_KEY=Key
+export DEFAULT_URL_HOST=production_url
+export MAILER_EMAIL_ADDRESS=from_and_reply_to_address
