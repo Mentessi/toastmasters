@@ -2,7 +2,10 @@ require 'rails_helper'
 
 RSpec.describe 'managing topics' do
 
-  let!(:topic) { FactoryBot.create :topic, name: 'What is your favourite colour'}
+  let(:user) { FactoryBot.create :user }
+  let!(:topic) {
+    FactoryBot.create :topic, name: 'What is your favourite colour'
+  }
 
   scenario 'when viewing' do
     visit topics_path
@@ -11,6 +14,10 @@ RSpec.describe 'managing topics' do
   end
 
   scenario 'when creating a topic' do
+    visit topics_path
+    click_link 'New Topic'
+    expect(page).to have_content('You need to sign in or sign up before continuing')
+    sign_in user
     visit topics_path
     click_link 'New Topic'
     click_button 'Create'
@@ -29,6 +36,17 @@ RSpec.describe 'managing topics' do
   end
 
   scenario 'when deleting a topic' do
+    # No delete button if not logged in
+    visit topic_path(topic)
+    expect(page).to have_no_button 'Delete Topic'
+
+    # can't delete if not the topic owner
+    sign_in user
+    visit topic_path(topic)
+    expect(page).to have_no_button 'Delete Topic'
+
+    # can delete as the topic owner
+    sign_in topic.user
     visit topic_path(topic)
     expect {
       accept_confirm { click_on 'Delete Topic' }
@@ -37,7 +55,22 @@ RSpec.describe 'managing topics' do
     expect(page).to have_no_content 'What is your favourite colour'
   end
 
-  scenario 'when editing a topic' do
+  scenario 'when updating a topic' do
+    # No link to edit if not logged in
+    visit topic_path(topic)
+    expect(page).to have_no_link 'Edit Topic'
+
+    # can't edit if not the topic owner
+    sign_in user
+    visit topic_path(topic)
+    expect(page).to have_no_link 'Edit Topic'
+
+    # Can edit as the topic owner
+    sign_in topic.user
+    visit topic_path(topic)
+    click_link 'Edit Topic'
+    expect(page).to have_content('You need to sign in or sign up before continuing')
+    sign_in user
     visit topic_path(topic)
     click_link 'Edit Topic'
     expect(current_path).to eq edit_topic_path(topic)

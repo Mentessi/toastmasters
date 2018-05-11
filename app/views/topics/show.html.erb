@@ -3,8 +3,11 @@
 
   <h2> <%= @topic.name %></h2>
 
-  <%= button_to 'Delete Topic', topic_path(@topic), method: :delete, data: { confirm: "Are you sure?" } %>
+  <% if @topic.user == current_user %>
+    <%= button_to 'Delete Topic', topic_path(@topic), method: :delete, data: { confirm: "Are you sure?" } %>
+    <%= link_to 'Edit Topic', edit_topic_path(@topic.id) %>
+  <% end %>
 
-  <%= link_to 'Edit Topic', edit_topic_path(@topic.id) %>
+  <%= link_to 'Back to topics page', topics_path %>
 
 </section>

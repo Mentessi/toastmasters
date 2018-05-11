@@ -16,4 +16,8 @@ RSpec.describe User, type: :model do
       it { is_expected.to be_invalid }
     end
   end
+
+  describe 'associations' do
+    it { should have_many(:topics) }
+  end
 end
