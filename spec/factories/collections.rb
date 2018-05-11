@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :collection do
-    name "MyString"
+    name "a collection of topics"
   end
 end
