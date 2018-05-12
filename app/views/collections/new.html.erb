@@ -1,0 +1,21 @@
+<h1>Collections</h1>
+<p>Create a new collection</p>
+
+<% if @collection.errors.any? %>
+  <div>
+    <h2>Error:</h2>
+    <ul>
+    <% @collection.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div>
+  <%= form_for @collection do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <%= f.submit %>
+  <% end %>
+</div>
