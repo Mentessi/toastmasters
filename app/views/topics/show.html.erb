@@ -8,6 +8,19 @@
     <%= link_to 'Edit Topic', edit_topic_path(@topic.id) %>
   <% end %>
 
+  </br>
+
+  <% if user_signed_in? %>
+    <h3> Add to collection </h3>
+
+    <%= form_with model: @collections_topic, url: {controller: "collections_topics", action: "create"} do |f| %>
+     <%= select_tag 'add_topic_to_collection', options_from_collection_for_select(@collection_list, 'id', 'name') %>
+     <%= f.hidden_field :topic_id, value: @topic.id%>
+     <%= button_to 'Add' %>
+    <% end %>
+    </br>
+  <% end %>
+
   <%= link_to 'Back to topics page', topics_path %>
 
 </section>

@@ -21,6 +21,7 @@ class TopicsController < ApplicationController
   end
 
   def show
+    @collection_list = Collection.all
     @topic = Topic.find(params[:id])
   end
 
