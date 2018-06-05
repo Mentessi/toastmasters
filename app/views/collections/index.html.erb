@@ -13,4 +13,9 @@
     </tr>
     <% end %>
   </table>
+
+  <% if user_signed_in? %>
+    <%= link_to 'New Collection', new_collection_path %>
+  <% end %>
+
 </section>
