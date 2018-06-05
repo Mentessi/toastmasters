@@ -14,7 +14,9 @@ RSpec.describe Topic, type: :model do
     it { is_expected.to be_valid }
   end
 
-  describe 'association' do
+  describe 'associations' do
     it { should belong_to(:user) }
+    it { should have_many(:collections_topics) }
+    it { should have_many(:collections) }
   end
 end

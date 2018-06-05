@@ -1,0 +1,16 @@
+<section>
+  <h1>Collections</h1>
+
+  <p>Collections of topics on assorted themes</p>
+
+  <table>
+    <tr>
+      <th>Collections</th>
+    </tr>
+    <% @collections.each do |collection| %>
+    <tr>
+      <td> <%= link_to collection.name, collection %> </td>
+    </tr>
+    <% end %>
+  </table>
+</section>
