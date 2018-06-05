@@ -1,6 +1,6 @@
 class CollectionsController < ApplicationController
 
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_current_collection, only: [:update, :edit, :destroy]
 
   def index

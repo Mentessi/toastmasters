@@ -26,4 +26,21 @@ RSpec.describe 'Collection requests', type: :request do
 
     it_behaves_like 'only logged in users'
   end
+
+  describe 'get#edit' do
+    let(:dispatch_request) { get edit_collection_path(collection) }
+    it_behaves_like 'only logged in users'
+  end
+
+  describe 'put#update' do
+    let(:dispatch_request) {
+      put collection_path(collection), params: { collection: {name: 'hello'} }
+    }
+    it_behaves_like 'only logged in users'
+  end
+
+  describe 'delete#destroy' do
+    let(:dispatch_request) { delete collection_path(collection) }
+    it_behaves_like 'only logged in users'
+  end
 end
