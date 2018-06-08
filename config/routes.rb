@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   root 'welcome#index'
   resources :topics
   resources :collections
+  resources :collections_topics
 end
