@@ -41,8 +41,13 @@ RSpec.describe 'managing collections' do
   end
 
   scenario 'updating a collection' do
+    # No edit button if not logged in
     visit collection_path(collection)
-    expect(page).to_not have_link 'Edit Collection'
+    expect(page).not_to have_link 'Edit Collection'
+
+    sign_in user
+    visit collection_path(collection)
+    expect(page).to have_link 'Edit Collection'
 
     sign_in user
     visit collection_path(collection)
@@ -71,5 +76,16 @@ RSpec.describe 'managing collections' do
       expect(current_path).to eq collections_path
     }.to change(Collection, :count).by(-1)
     expect(page).to have_no_content 'dogs and cats'
+  end
+
+  scenario 'add a topic to a collection' do
+    sign_in user
+    visit topic_path(topic)
+    expect(page).to have_select('add_topic_to_collection')
+    select(collection.name, :from => 'add_topic_to_collection')
+    click_button 'Add'
+    expect(page).to have_content 'dog topic'
+    expect(page).to have_content 'dogs and cats'
+    expect(current_path).to eq collection_path(collection)
   end
 end
