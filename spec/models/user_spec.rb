@@ -19,5 +19,6 @@ RSpec.describe User, type: :model do
 
   describe 'associations' do
     it { should have_many(:topics) }
+    it { should have_many(:collections) }
   end
 end
