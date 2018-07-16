@@ -4,7 +4,7 @@
   </br>
 <% end %>
 
- <% if user_signed_in? %>
+ <% if @collection.user == current_user %>
   <%= link_to 'Edit Collection', edit_collection_path(@collection.id) %>
   </br>
   <%= button_to 'Delete Collection', collection_path(@collection), method: :delete, data: { confirm: "Are you sure?" } %>
