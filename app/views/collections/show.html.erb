@@ -1,6 +1,7 @@
 <h1><%= @collection.name %></h1>
 <% @collection.topics.each do |topic| %>
   <%= topic.name %>
+  </br>
 <% end %>
 
  <% if user_signed_in? %>

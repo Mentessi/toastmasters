@@ -3,9 +3,62 @@
 
   <h2> <%= @topic.name %></h2>
 
+  </br>
+
+  <% if @topic.errors.any? %>
+    <div>
+      <h2>Error:</h2>
+      <ul>
+      <% @topic.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  </br>
+
   <% if @topic.user == current_user %>
     <%= button_to 'Delete Topic', topic_path(@topic), method: :delete, data: { confirm: "Are you sure?" } %>
     <%= link_to 'Edit Topic', edit_topic_path(@topic.id) %>
+  <% end %>
+
+  </br>
+
+  <% if user_signed_in? %>
+    <h3> Add to collection </h3>
+
+    <%= form_with model: @topic, method: :post, url: topic_collections_topics_path(@topic) do |f| %>
+
+        <%- collections_topics_lookup = @topic
+          .collections_topics
+          .reduce({}) {|memo, ct|
+            memo[ct.collection_id] = ct.id
+            memo
+          } %>
+
+        <% @collections.each_with_index do |collection, index| %>
+
+          <%- collections_topic_id = collections_topics_lookup.fetch(collection.id, '') %>
+
+          <%= hidden_field_tag "topic[collections_topics_attributes][#{index}][_destroy]", 1 %>
+
+          <%= check_box_tag "topic[collections_topics_attributes][#{index}][_destroy]", 0, collections_topic_id.present? %>
+
+          <%= label_tag "topic[collections_topics_attributes][#{index}][_destroy]", collection.name %>
+
+          <%= hidden_field_tag "topic[collections_topics_attributes][#{index}][id]", collections_topic_id %>
+
+          <%= hidden_field_tag "topic[collections_topics_attributes][#{index}][topic_id]", @topic.id %>
+
+          <%= hidden_field_tag "topic[collections_topics_attributes][#{index}][collection_id]", collection.id %>
+
+          </br>
+        <% end %>
+
+      <%= button_to 'Update' %>
+    <% end %>
+    </br>
   <% end %>
 
   <%= link_to 'Back to topics page', topics_path %>
