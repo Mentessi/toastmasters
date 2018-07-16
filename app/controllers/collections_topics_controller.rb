@@ -2,13 +2,21 @@ class CollectionsTopicsController < ApplicationController
 
   def create
     @topic = Topic.find(params[:topic_id])
-    @collection = Collection.find(params[:add_topic_to_collection])
 
-    if @topic.update(collections_topics_attributes: [{collection_id: @collection.id, topic_id: @topic.id}])
-
-      redirect_to collection_path(@collection)
+    if @topic.update(topic_params)
+      redirect_to topic_path(@topic), notice: "collection(s) successfully updated"
     else
-      redirect_to topics_path
+      redirect_to topic_path(@topic)
     end
+  end
+
+  private
+
+   def topic_params
+    params.require(:topic).permit(
+      collections_topics_attributes: [
+        :id, :collection_id, :topic_id, :_destroy
+      ]
+    )
   end
 end
