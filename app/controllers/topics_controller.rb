@@ -21,7 +21,7 @@ class TopicsController < ApplicationController
   end
 
   def show
-    @collection_list = Collection.all
+    @collections = Collection.all
     @topic = Topic.find(params[:id])
   end
 
@@ -49,6 +49,6 @@ class TopicsController < ApplicationController
   end
 
   def topic_params
-    params.require(:topic).permit(:name)
+    params.require(:topic).permit(:name, collections_topics_attributes: [:collection_id, :topic_id, :_destroy])
   end
 end
