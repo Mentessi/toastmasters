@@ -3,9 +3,11 @@ require 'rails_helper'
 RSpec.describe 'managing collections' do
   let!(:collection1) { FactoryBot.create :collection, name: 'Dogs and cats' }
   let!(:collection2) { FactoryBot.create :collection, name: 'Rabbits and hamsters' }
-  let!(:topic){ FactoryBot.create :topic, name: 'dog topic' }
+  let!(:collection3) { FactoryBot.create :collection, name: 'Monkeys and lamas', user: collection1.user }
   let!(:unrelated_topic){ FactoryBot.create :topic, name: 'unrelated' }
-  let!(:user){ FactoryBot.create :user }
+  let!(:topic){ FactoryBot.create :topic, name: 'dog topic' }
+  let!(:user){ collection1.user }
+  let!(:user2){ collection2.user }
 
   before do
     collection1.topics << topic
@@ -46,10 +48,12 @@ RSpec.describe 'managing collections' do
     visit collection_path(collection1)
     expect(page).not_to have_link 'Edit Collection'
 
+    # Can't edit of not the collection owner
     sign_in user
-    visit collection_path(collection1)
-    expect(page).to have_link 'Edit Collection'
+    visit collection_path(collection2)
+    expect(page).to have_no_link 'Edit Collection'
 
+    # Can edit as collection owner
     sign_in user
     visit collection_path(collection1)
     click_link 'Edit Collection'
@@ -69,6 +73,11 @@ RSpec.describe 'managing collections' do
     visit collection_path(collection1)
     expect(page).to have_no_button 'Delete Collection'
 
+    # Cant delete if not collection owner
+    sign_in user
+    visit collection_path(collection2)
+    expect(page).to have_no_button 'Delete Collection'
+
     # can delete when logged in
     sign_in user
     visit collection_path(collection1)
@@ -84,7 +93,12 @@ RSpec.describe 'managing collections' do
     visit topic_path(topic)
     expect(page).to have_no_content 'Add to collection'
 
-    #Can add topic to collection when logged in
+    # Can only add to own collections
+    sign_in user
+    visit topic_path(topic)
+    expect(page).to have_no_content('Rabbits and hamsters')
+
+    #Can add own topic to collection
     sign_in user
     visit topic_path(topic)
     expect(page).to have_content('Add to collection')
@@ -97,11 +111,11 @@ RSpec.describe 'managing collections' do
 
     #can update multiple collections at once when logged in
     page.uncheck collection1.name
-    page.check collection2.name
+    page.check collection3.name
     click_button 'Update'
     expect(current_path).to eq topic_path(topic)
     expect(page).to have_content "collection(s) successfully updated"
     expect(page).to have_field(collection1.name, checked: false)
-    expect(page).to have_field(collection2.name, checked: true)
+    expect(page).to have_field(collection3.name, checked: true)
   end
 end

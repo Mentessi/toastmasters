@@ -1,7 +1,7 @@
 class CollectionsController < ApplicationController
 
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
-  before_action :set_current_collection, only: [:update, :edit, :destroy]
+  before_action :set_current_user_collection, only: [:update, :edit, :destroy]
 
   def index
     @collections = Collection.all
@@ -16,7 +16,7 @@ class CollectionsController < ApplicationController
   end
 
   def create
-    @collection = Collection.new(collection_params)
+    @collection = current_user.collections.new(collection_params)
     if @collection.save
       redirect_to collections_path
     else
@@ -43,8 +43,8 @@ class CollectionsController < ApplicationController
 
   private
 
-  def set_current_collection
-    @collection = Collection.find(params[:id])
+  def set_current_user_collection
+    @collection = current_user.collections.find(params[:id])
   end
 
   def collection_params

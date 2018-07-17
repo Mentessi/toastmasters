@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Collection requests', type: :request do
   let(:collection) { FactoryBot.create :collection }
-  let(:user) { FactoryBot.create :user }
+  let(:user) { collection.user }
 
   describe 'get#show' do
     let(:dispatch_request) { get collection_path(collection) }
@@ -30,6 +30,7 @@ RSpec.describe 'Collection requests', type: :request do
   describe 'get#edit' do
     let(:dispatch_request) { get edit_collection_path(collection) }
     it_behaves_like 'only logged in users'
+    it_behaves_like 'owners only'
   end
 
   describe 'put#update' do
@@ -37,10 +38,12 @@ RSpec.describe 'Collection requests', type: :request do
       put collection_path(collection), params: { collection: {name: 'hello'} }
     }
     it_behaves_like 'only logged in users'
+    it_behaves_like 'owners only'
   end
 
   describe 'delete#destroy' do
     let(:dispatch_request) { delete collection_path(collection) }
     it_behaves_like 'only logged in users'
+    it_behaves_like 'owners only'
   end
 end

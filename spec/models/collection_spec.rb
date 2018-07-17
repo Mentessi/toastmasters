@@ -4,6 +4,7 @@ RSpec.describe Collection, type: :model do
   describe 'associations' do
     it { should have_many(:collections_topics) }
     it { should have_many(:topics) }
+    it { should belong_to(:user) }
   end
 
   describe 'valildations' do

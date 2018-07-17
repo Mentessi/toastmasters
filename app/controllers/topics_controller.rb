@@ -3,6 +3,7 @@ class TopicsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :destroy, :create, :edit, :update]
   before_action :set_current_user_topic, only: [:update, :destroy, :edit]
 
+
   def index
     @topics = Topic.all
   end
@@ -21,7 +22,6 @@ class TopicsController < ApplicationController
   end
 
   def show
-    @collections = Collection.all
     @topic = Topic.find(params[:id])
   end
 

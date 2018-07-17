@@ -7,4 +7,5 @@ class User < ApplicationRecord
   validates :email, uniqueness: true
 
   has_many :topics
+  has_many :collections
 end
