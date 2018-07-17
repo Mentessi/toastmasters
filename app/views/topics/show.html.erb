@@ -37,7 +37,7 @@
             memo
           } %>
 
-        <% @collections.each_with_index do |collection, index| %>
+        <% current_user.collections.each_with_index do |collection, index| %>
 
           <%- collections_topic_id = collections_topics_lookup.fetch(collection.id, '') %>
 
