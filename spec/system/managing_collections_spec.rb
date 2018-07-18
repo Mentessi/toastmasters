@@ -9,10 +9,6 @@ RSpec.describe 'managing collections' do
   let!(:user){ collection1.user }
   let!(:user2){ collection2.user }
 
-  before do
-    collection1.topics << topic
-  end
-
   scenario 'when viewing collections' do
     visit collections_path
     expect(page).to have_content('Collections')
@@ -20,6 +16,7 @@ RSpec.describe 'managing collections' do
   end
 
   scenario 'viewing a single collection' do
+    collection1.topics << topic
     visit collections_path
     expect(page).to have_content('Collections')
     click_link('Dogs and cats')
@@ -103,19 +100,19 @@ RSpec.describe 'managing collections' do
     visit topic_path(topic)
     expect(page).to have_content('Add to collection')
     expect(page).to have_content collection1.name
-    page.check collection1.name
+    find('label', :text => collection1.name).click
     click_button 'Update'
     expect(current_path).to eq topic_path(topic)
     expect(page).to have_content "collection(s) successfully updated"
-    expect(page).to have_field(collection1.name, checked: true)
+    expect(page).to have_field(collection1.name, checked: true, visible: false)
 
     #can update multiple collections at once when logged in
-    page.uncheck collection1.name
-    page.check collection3.name
+    find('label', :text => collection1.name).click
+    find('label', :text => collection3.name).click
     click_button 'Update'
     expect(current_path).to eq topic_path(topic)
     expect(page).to have_content "collection(s) successfully updated"
-    expect(page).to have_field(collection1.name, checked: false)
-    expect(page).to have_field(collection3.name, checked: true)
+    expect(page).to have_field(collection1.name, checked: false, visible: false)
+    expect(page).to have_field(collection3.name, checked: true, visible: false)
   end
 end

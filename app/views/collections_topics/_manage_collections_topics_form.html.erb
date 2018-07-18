@@ -14,7 +14,7 @@
 
         <%- collections_topic_id = collections_topics_lookup.fetch(collection.id, '') %>
 
-        <%= hidden_field_tag "topic[collections_topics_attributes][#{index}][_destroy]", 1 %>
+        <%= hidden_field_tag "topic[collections_topics_attributes][#{index}][_destroy]", 1, id: "hidden-destroy-#{index}" %>
 
         <%= check_box_tag "topic[collections_topics_attributes][#{index}][_destroy]", 0, collections_topic_id.present? %>
 

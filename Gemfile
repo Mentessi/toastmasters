@@ -34,6 +34,9 @@ gem 'devise'
 
 gem 'shoulda'
 
+# Styling
+gem 'materialize-sass'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
