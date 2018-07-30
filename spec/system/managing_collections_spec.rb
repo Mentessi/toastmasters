@@ -55,10 +55,10 @@ RSpec.describe 'managing collections' do
     expect(current_path).to eq edit_collection_path(collection1)
     expect(page).to have_content 'Dogs and cats'
     fill_in 'Name', with: ''
-    click_button 'Update Collection'
+    click_button 'Update'
     expect(page).to have_content "Name can't be blank"
     fill_in 'Name', with: 'rabbits'
-    click_button 'Update Collection'
+    click_button 'Update'
     expect(current_path).to eq collection_path(collection1)
     expect(page).to have_content 'rabbits'
   end
