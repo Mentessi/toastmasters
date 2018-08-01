@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'managing topics' do
 
-  let(:user) { FactoryBot.create :user }
+  let (:user) { FactoryBot.create :user }
   let!(:topic) {
     FactoryBot.create :topic, name: 'What is your favourite colour'
   }
@@ -33,6 +33,7 @@ RSpec.describe 'managing topics' do
     click_on('What is your favourite colour')
     expect(current_path).to eq topic_path(topic)
     expect(page).to have_content('Topic:')
+    expect(page).to have_content(topic.user.username)
   end
 
   scenario 'when deleting a topic' do

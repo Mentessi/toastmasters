@@ -15,6 +15,19 @@ RSpec.describe User, type: :model do
       subject { FactoryBot.build(:user, email: 'hello@email.com' ) }
       it { is_expected.to be_invalid }
     end
+
+    context 'when username missing' do
+      subject { FactoryBot.build(:user, username: "") }
+      it { is_expected.to be_invalid }
+    end
+
+    context 'when username is already taken' do
+      before do
+        FactoryBot.create(:user, username: 'Dave' )
+      end
+      subject { FactoryBot.build(:user, username: 'Dave' ) }
+      it { is_expected.to be_invalid }
+    end
   end
 
   describe 'associations' do

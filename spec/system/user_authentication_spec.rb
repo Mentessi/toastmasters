@@ -7,11 +7,15 @@ RSpec.describe 'authenticating users' do
   scenario 'when signing up' do
     visit '/'
     click_on 'Sign Up'
+    fill_in 'Username', with: ''
     fill_in 'Email', with: ''
-    fill_in 'Password', with: 'password'
-    fill_in 'Password confirmation', with: 'password'
+    fill_in 'Password', with: ''
     click_button 'Sign up'
+    expect(page).to have_content "Username can't be blank"
     expect(page).to have_content "Email can't be blank"
+    expect(page).to have_content "Password can't be blank"
+
+    fill_in 'Username', with: 'Mentessi'
     fill_in 'Email', with: 'michael@bluespot.io'
     fill_in 'Password', with: 'password'
     fill_in 'Password confirmation', with: 'password'
