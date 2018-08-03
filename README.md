@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/Mentessi/toastmasters.svg?style=svg)](https://circleci.com/gh/Mentessi/toastmasters)
+
 # README
 
 ## Database creation
