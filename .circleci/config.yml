@@ -19,7 +19,7 @@ jobs:
     environment:
       - RAILS_ENV=test
       - RACK_ENV=test
-      - DATABASE_URL=postgres://toastmasters@localhost:5432/toastmasters_tool_test
+      - DATABASE_URL=postgres://toastmasters@localhost:3000/toastmasters_tool_test
 
     steps:
       - checkout
