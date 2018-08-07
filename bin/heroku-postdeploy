@@ -4,4 +4,4 @@ set -e
 
 rails db:schema:load db:seed
 
-rails runner lib/runners/heroku_seeder.rb
+rails runner lib/runners/heroku_seed_runner.rb
