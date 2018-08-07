@@ -5,6 +5,7 @@ RSpec.describe Collection, type: :model do
     it { should have_many(:collections_topics) }
     it { should have_many(:topics) }
     it { should belong_to(:user) }
+    it { should accept_nested_attributes_for(:collections_topics) }
   end
 
   describe 'valildations' do

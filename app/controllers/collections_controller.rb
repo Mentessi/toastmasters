@@ -48,6 +48,6 @@ class CollectionsController < ApplicationController
   end
 
   def collection_params
-    params.require(:collection).permit(:name)
+    params.require(:collection).permit(:name, :id, collections_topics_attributes: [:id, :collection_id, :topic_id, :_destroy])
   end
 end
