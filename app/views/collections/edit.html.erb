@@ -17,10 +17,10 @@
 <div>
     <%= form_with model: @collection, local: true, method: :patch, url: collection_path(@collection) do |f| %>
 
-      <%- collections_topics_lookup = @collection
-        .collections_topics
-        .reduce({}) {|memo, ct|
-          memo[ct.topic_id] = ct.id
+      <%- collections_memberships_lookup = @collection
+        .collections_memberships
+        .reduce({}) {|memo, cm|
+          memo[cm.topic_id] = cm.id
           memo
         } %>
 
@@ -29,19 +29,19 @@
 
       <% @collection.topics.each_with_index do |topic, index| %>
 
-      <%- collections_topic_id = collections_topics_lookup.fetch(topic.id, '') %>
+      <%- collections_topic_id = collections_memberships_lookup.fetch(topic.id, '') %>
 
-      <%= hidden_field_tag "collection[collections_topics_attributes][#{index}][_destroy]", 1, id: "hidden-destroy-#{topic.id}" %>
+      <%= hidden_field_tag "collection[collections_memberships_attributes][#{index}][_destroy]", 1, id: "hidden-destroy-#{topic.id}" %>
 
-      <%= check_box_tag "collection[collections_topics_attributes][#{index}][_destroy]", 0, collections_topic_id.present? %>
+      <%= check_box_tag "collection[collections_memberships_attributes][#{index}][_destroy]", 0, collections_topic_id.present? %>
 
-      <%= label_tag "collection[collections_topics_attributes][#{index}][_destroy]", topic.name %>
+      <%= label_tag "collection[collections_memberships_attributes][#{index}][_destroy]", topic.name %>
 
-      <%= hidden_field_tag "collection[collections_topics_attributes][#{index}][id]", collections_topic_id %>
+      <%= hidden_field_tag "collection[collections_memberships_attributes][#{index}][id]", collections_topic_id %>
 
-      <%= hidden_field_tag "collection[collections_topics_attributes][#{index}][topic_id]", topic.id %>
+      <%= hidden_field_tag "collection[collections_memberships_attributes][#{index}][topic_id]", topic.id %>
 
-      <%= hidden_field_tag "collection[collections_topics_attributes][#{index}][collection_id]", @collection.id %>
+      <%= hidden_field_tag "collection[collections_memberships_attributes][#{index}][collection_id]", @collection.id %>
 
       </br>
 
