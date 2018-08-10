@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180731161103) do
+ActiveRecord::Schema.define(version: 20180810070700) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,11 +23,11 @@ ActiveRecord::Schema.define(version: 20180731161103) do
     t.index ["user_id"], name: "index_collections_on_user_id"
   end
 
-  create_table "collections_topics", force: :cascade do |t|
+  create_table "collections_memberships", force: :cascade do |t|
     t.bigint "collection_id", null: false
     t.bigint "topic_id", null: false
-    t.index ["collection_id", "topic_id"], name: "index_collections_topics_on_collection_id_and_topic_id"
-    t.index ["topic_id", "collection_id"], name: "index_collections_topics_on_topic_id_and_collection_id"
+    t.index ["collection_id", "topic_id"], name: "index_collections_memberships_on_collection_id_and_topic_id"
+    t.index ["topic_id", "collection_id"], name: "index_collections_memberships_on_topic_id_and_collection_id"
   end
 
   create_table "topics", force: :cascade do |t|
