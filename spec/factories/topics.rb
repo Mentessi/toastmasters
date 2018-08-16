@@ -2,7 +2,9 @@
 
 FactoryBot.define do
   factory :topic do
-    name 'What is your secret superpower?'
+    sequence :name do |n|
+      "This is my topic number # #{n}"
+    end
     user
   end
 end
