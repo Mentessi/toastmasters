@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe CollectionsTopic, type: :model do
+RSpec.describe CollectionsMembership, type: :model do
 
   describe 'associations' do
     it { should belong_to(:collection) }

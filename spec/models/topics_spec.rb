@@ -16,8 +16,8 @@ RSpec.describe Topic, type: :model do
 
   describe 'associations' do
     it { should belong_to(:user) }
-    it { should have_many(:collections_topics) }
+    it { should have_many(:collections_memberships) }
     it { should have_many(:collections) }
-    it { should accept_nested_attributes_for(:collections_topics) }
+    it { should accept_nested_attributes_for(:collections_memberships) }
   end
 end

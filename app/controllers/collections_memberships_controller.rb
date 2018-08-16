@@ -1,4 +1,4 @@
-class CollectionsTopicsController < ApplicationController
+class CollectionsMembershipsController < ApplicationController
 
   def create
     @topic = Topic.find(params[:topic_id])
@@ -14,7 +14,7 @@ class CollectionsTopicsController < ApplicationController
 
    def topic_params
     params.require(:topic).permit(
-      collections_topics_attributes: [
+      collections_memberships_attributes: [
         :id, :collection_id, :topic_id, :_destroy
       ]
     )

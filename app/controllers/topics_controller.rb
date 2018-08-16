@@ -49,6 +49,6 @@ class TopicsController < ApplicationController
   end
 
   def topic_params
-    params.require(:topic).permit(:name, collections_topics_attributes: [:collection_id, :topic_id, :_destroy])
+    params.require(:topic).permit(:name, collections_memberships_attributes: [:collection_id, :topic_id, :_destroy])
   end
 end
