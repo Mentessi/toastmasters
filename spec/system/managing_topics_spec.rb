@@ -6,7 +6,8 @@ RSpec.describe 'managing topics' do
   let(:user) { FactoryBot.create :user }
   let!(:topic) do
     FactoryBot.create :topic, name: 'What is your favourite colour'
-  end
+  }
+  let!(:topics){ FactoryBot.create_list(:topic, 4) }
 
   it 'when viewing' do
     visit topics_path
@@ -26,6 +27,7 @@ RSpec.describe 'managing topics' do
     fill_in 'Name', with: 'tell us a story'
     click_button 'Create'
     expect(page).to have_current_path topics_path
+    click_link '2', exact: true
     expect(page).to have_content 'tell us a story'
   end
 
