@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :topic do
     sequence :name do |n|
-      "This is my topic number # #{n}"
+      "This is my topic number # #{"%.8d" % n}"
     end
     user
   end
