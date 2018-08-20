@@ -43,11 +43,11 @@ RSpec.describe 'authenticating users' do
     visit '/'
     click_on 'Log In'
     click_on 'Forgot your password?'
-    expect(current_path).to eq new_user_password_path
+    expect(page).to have_current_path new_user_password_path
     fill_in 'Email', with: user.email
     click_on 'Send me reset password instructions'
     expect(page).to have_content 'You will receive an email with instructions'
-    expect(current_path).to eq user_session_path
+    expect(page).to have_current_path user_session_path
     expect(unread_emails_for(user.email)).to be_present
     open_email(user.email, with_subject: 'Reset password instructions')
     click_first_link_in_email

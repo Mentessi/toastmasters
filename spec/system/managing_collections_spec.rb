@@ -32,7 +32,7 @@ RSpec.describe 'managing collections' do
     sign_in user
     visit collections_path
     click_link 'New Collection'
-    expect(current_path).to eq new_collection_path
+    expect(page).to have_current_path new_collection_path
     click_button 'Create'
     expect(page).to have_content "Name can't be blank"
     fill_in 'Name', with: 'cat collection'
@@ -54,14 +54,14 @@ RSpec.describe 'managing collections' do
     sign_in user
     visit collection_path(collection1)
     click_link 'Edit Collection'
-    expect(current_path).to eq edit_collection_path(collection1)
+    expect(page).to have_current_path edit_collection_path(collection1)
     expect(page).to have_content 'Dogs and cats'
     fill_in 'Name', with: ''
     click_button 'Update'
     expect(page).to have_content "Name can't be blank"
     fill_in 'Name', with: 'rabbits'
     click_button 'Update'
-    expect(current_path).to eq collection_path(collection1)
+    expect(page).to have_current_path collection_path(collection1)
     expect(page).to have_content 'rabbits'
   end
 
@@ -80,7 +80,7 @@ RSpec.describe 'managing collections' do
     visit collection_path(collection1)
     expect do
       accept_confirm { click_on 'Delete Collection' }
-      expect(current_path).to eq collections_path
+      expect(page).to have_current_path collections_path
     end.to change(Collection, :count).by(-1)
     expect(page).to have_no_content 'Dogs and cats'
   end
