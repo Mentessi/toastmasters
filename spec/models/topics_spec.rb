@@ -3,14 +3,14 @@
 require 'rails_helper'
 
 RSpec.describe Topic, type: :model do
-  context 'name' do
+  describe 'name' do
     it 'is required' do
       topic = FactoryBot.build(:topic, name: '')
       expect(topic).to be_invalid
     end
   end
 
-  context 'factory' do
+  describe 'factory' do
     subject { FactoryBot.build(:topic) }
 
     it { is_expected.to be_valid }

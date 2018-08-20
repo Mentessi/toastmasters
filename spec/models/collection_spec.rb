@@ -11,14 +11,14 @@ RSpec.describe Collection, type: :model do
   end
 
   describe 'valildations' do
-    context 'name' do
+    describe 'name' do
       it 'is required' do
         collection = FactoryBot.build(:collection, name: '')
         expect(collection).to be_invalid
       end
     end
 
-    context 'factory' do
+    describe 'factory' do
       subject { FactoryBot.build(:collection) }
 
       it { is_expected.to be_valid }
