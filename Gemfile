@@ -51,6 +51,7 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'rspec-rails', '>= 3.5.0'
   gem 'rspec_junit_formatter', require: false
+  gem 'rubocop-rspec'
   gem 'factory_bot_rails'
   gem 'email_spec'
 end
