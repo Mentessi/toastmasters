@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class TopicsController < ApplicationController
 
   before_action :authenticate_user!, only: [:new, :destroy, :create, :edit, :update]
