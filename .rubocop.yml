@@ -39,6 +39,14 @@ Metrics/LineLength:
   - 'spec/rails_helper.rb'
   - 'config/initializers/*'
 
+Metrics/AbcSize:
+  Exclude:
+  - 'lib/heroku_seeder.rb'
+
+Metrics/MethodLength:
+  Exclude:
+  - 'lib/heroku_seeder.rb'
+
 Rails:
   Enabled: true
 
