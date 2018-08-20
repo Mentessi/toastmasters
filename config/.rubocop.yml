@@ -87,5 +87,5 @@ Style/RegexpLiteral:
 Style/TrailingCommaInArguments:
   Enabled: false
 
-Style/TrailingCommaInLiteral:
+Style/TrailingCommaInHashLiteral:
   Enabled: false
