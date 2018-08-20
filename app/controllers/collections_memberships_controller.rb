@@ -19,5 +19,5 @@ class CollectionsMembershipsController < ApplicationController
         id collection_id topic_id _destroy
       ]
     )
- end
+  end
 end
