@@ -4,7 +4,7 @@ RSpec.describe User, type: :model do
 
   describe 'validations' do
     context 'when email missing' do
-      subject { FactoryBot.build(:user, email: "") }
+      subject { FactoryBot.build(:user, email: '') }
       it { is_expected.to be_invalid }
     end
 
@@ -17,7 +17,7 @@ RSpec.describe User, type: :model do
     end
 
     context 'when username missing' do
-      subject { FactoryBot.build(:user, username: "") }
+      subject { FactoryBot.build(:user, username: '') }
       it { is_expected.to be_invalid }
     end
 

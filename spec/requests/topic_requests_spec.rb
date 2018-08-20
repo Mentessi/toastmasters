@@ -16,7 +16,7 @@ RSpec.describe 'Topic requests', type: :request do
   end
 
   describe 'post#create' do
-    let(:dispatch_request){post topics_path, params: { topic: {name: "here is a new topic"} } }
+    let(:dispatch_request){post topics_path, params: { topic: {name: 'here is a new topic'} } }
     it_behaves_like 'only logged in users'
   end
 
@@ -29,7 +29,7 @@ RSpec.describe 'Topic requests', type: :request do
 
   describe 'put#update' do
     let(:dispatch_request) {
-      put topic_path(topic), params: { topic: {:name => "ammended topic"} }
+      put topic_path(topic), params: { topic: {:name => 'ammended topic'} }
     }
 
     it_behaves_like 'only logged in users'

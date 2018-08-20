@@ -10,7 +10,7 @@ RSpec.describe Collection, type: :model do
 
   describe 'valildations' do
     context 'name' do
-      it "is required" do
+      it 'is required' do
         collection = FactoryBot.build(:collection, name: '')
         expect(collection).to be_invalid
       end

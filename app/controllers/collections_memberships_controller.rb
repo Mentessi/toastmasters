@@ -6,7 +6,7 @@ class CollectionsMembershipsController < ApplicationController
     @topic = Topic.find(params[:topic_id])
 
     if @topic.update(topic_params)
-      redirect_to topic_path(@topic), notice: "collection(s) successfully updated"
+      redirect_to topic_path(@topic), notice: 'collection(s) successfully updated'
     else
       redirect_to topic_path(@topic)
     end

@@ -26,7 +26,7 @@ RSpec.describe 'managing collections memberships' do
     find('label', text: collection1.name).click
     click_button 'Update'
     expect(current_path).to eq topic_path(topic1)
-    expect(page).to have_content "collection(s) successfully updated"
+    expect(page).to have_content 'collection(s) successfully updated'
     expect(page).to have_field(collection1.name, checked: true, visible: false)
 
     #can update multiple collections at once when logged in
@@ -34,7 +34,7 @@ RSpec.describe 'managing collections memberships' do
     find('label', text: collection2.name).click
     click_button 'Update'
     expect(current_path).to eq topic_path(topic1)
-    expect(page).to have_content "collection(s) successfully updated"
+    expect(page).to have_content 'collection(s) successfully updated'
     expect(page).to have_field(collection1.name, checked: false, visible: false)
     expect(page).to have_field(collection2.name, checked: true, visible: false)
   end
@@ -63,7 +63,7 @@ RSpec.describe 'managing collections memberships' do
     click_link 'Edit Collection'
     expect(page).to have_field(topic2.name, checked: true, visible: false)
     find('label', text: topic2.name).click
-    fill_in "Name", with: 'No more animal topics'
+    fill_in 'Name', with: 'No more animal topics'
     click_button 'Update'
     expect(page).to have_no_content 'cat topic'
     expect(page).to have_content 'No more animal topics'

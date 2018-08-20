@@ -29,7 +29,7 @@ RSpec.describe 'authenticating users' do
     fill_in 'Email', with: ''
     fill_in 'Password', with: user.password
     click_button 'Log in'
-    expect(page).to have_content "Invalid Email or password"
+    expect(page).to have_content 'Invalid Email or password'
     fill_in 'Email', with: user.email
     fill_in 'Password', with: user.password
     click_button 'Log in'
