@@ -9,13 +9,13 @@ RSpec.describe 'managing collections' do
   let!(:topic) { FactoryBot.create :topic, name: 'dog topic' }
   let!(:user) { collection1.user }
 
-  scenario 'when viewing collections' do
+  it 'when viewing collections' do
     visit collections_path
     expect(page).to have_content('Collections')
     expect(page).to have_content('Dogs and cats')
   end
 
-  scenario 'viewing a single collection' do
+  it 'viewing a single collection' do
     collection1.topics << topic
     visit collections_path
     expect(page).to have_content('Collections')
@@ -24,10 +24,10 @@ RSpec.describe 'managing collections' do
     expect(page).not_to have_content('unrelated')
   end
 
-  scenario 'creating a collection' do
+  it 'creating a collection' do
     # No create button if not logged in
     visit collections_path
-    expect(page).to_not have_link 'New Collection'
+    expect(page).not_to have_link 'New Collection'
 
     sign_in user
     visit collections_path
@@ -40,7 +40,7 @@ RSpec.describe 'managing collections' do
     expect(page).to have_content 'cat collection'
   end
 
-  scenario 'updating a collection' do
+  it 'updating a collection' do
     # No edit button if not logged in
     visit collection_path(collection1)
     expect(page).not_to have_link 'Edit Collection'
@@ -65,7 +65,7 @@ RSpec.describe 'managing collections' do
     expect(page).to have_content 'rabbits'
   end
 
-  scenario 'deleting a collection' do
+  it 'deleting a collection' do
     # No delete button if not logged in
     visit collection_path(collection1)
     expect(page).to have_no_button 'Delete Collection'

@@ -8,13 +8,13 @@ RSpec.describe 'managing topics' do
     FactoryBot.create :topic, name: 'What is your favourite colour'
   end
 
-  scenario 'when viewing' do
+  it 'when viewing' do
     visit topics_path
     expect(page).to have_content('Topics')
     expect(page).to have_content('What is your favourite colour')
   end
 
-  scenario 'when creating a topic' do
+  it 'when creating a topic' do
     visit topics_path
     click_link 'New Topic'
     expect(page).to have_content('You need to sign in or sign up before continuing')
@@ -29,7 +29,7 @@ RSpec.describe 'managing topics' do
     expect(page).to have_content 'tell us a story'
   end
 
-  scenario 'viewing a topic' do
+  it 'viewing a topic' do
     visit topics_path
     click_on('What is your favourite colour')
     expect(current_path).to eq topic_path(topic)
@@ -37,7 +37,7 @@ RSpec.describe 'managing topics' do
     expect(page).to have_content(topic.user.username)
   end
 
-  scenario 'when deleting a topic' do
+  it 'when deleting a topic' do
     # No delete button if not logged in
     visit topic_path(topic)
     expect(page).to have_no_button 'Delete Topic'
@@ -57,7 +57,7 @@ RSpec.describe 'managing topics' do
     expect(page).to have_no_content 'What is your favourite colour'
   end
 
-  scenario 'when updating a topic' do
+  it 'when updating a topic' do
     # No link to edit if not logged in
     visit topic_path(topic)
     expect(page).to have_no_link 'Edit Topic'

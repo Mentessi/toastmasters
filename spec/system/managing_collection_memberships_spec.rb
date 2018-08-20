@@ -10,7 +10,7 @@ RSpec.describe 'managing collections memberships' do
   let!(:user) { collection1.user }
 
   # From Topics show page:
-  scenario 'add a topic to a collection on topic show page' do
+  it 'add a topic to a collection on topic show page' do
     # No add topic to collection option if not logged in
     visit topic_path(topic1)
     expect(page).to have_no_content 'Add to collection'
@@ -42,7 +42,7 @@ RSpec.describe 'managing collections memberships' do
   end
 
   # From Collections edit page:
-  scenario 'remove a topic from a collection on collection edit page' do
+  it 'remove a topic from a collection on collection edit page' do
     collection1.topics << topic1
     collection1.topics << topic2
 

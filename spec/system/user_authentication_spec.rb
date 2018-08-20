@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe 'authenticating users' do
   let!(:user) { FactoryBot.create :user }
 
-  scenario 'when signing up' do
+  it 'when signing up' do
     visit '/'
     click_on 'Sign Up'
     fill_in 'Username', with: ''
@@ -24,7 +24,7 @@ RSpec.describe 'authenticating users' do
     expect(page).to have_content 'You have signed up successfully'
   end
 
-  scenario 'when logging in and out' do
+  it 'when logging in and out' do
     visit '/'
     click_on 'Log In'
     fill_in 'Email', with: ''
@@ -39,7 +39,7 @@ RSpec.describe 'authenticating users' do
     expect(page).to have_content 'Signed out successfully'
   end
 
-  scenario 'when resetting a password' do
+  it 'when resetting a password' do
     visit '/'
     click_on 'Log In'
     click_on 'Forgot your password?'
