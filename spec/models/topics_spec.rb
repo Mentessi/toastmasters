@@ -12,6 +12,7 @@ RSpec.describe Topic, type: :model do
 
   context 'factory' do
     subject { FactoryBot.build(:topic) }
+
     it { is_expected.to be_valid }
   end
 

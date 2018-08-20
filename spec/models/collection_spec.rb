@@ -20,6 +20,7 @@ RSpec.describe Collection, type: :model do
 
     context 'factory' do
       subject { FactoryBot.build(:collection) }
+
       it { is_expected.to be_valid }
     end
   end
