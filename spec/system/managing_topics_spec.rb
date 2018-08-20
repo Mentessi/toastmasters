@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'managing topics' do
-  let (:user) { FactoryBot.create :user }
+  let(:user) { FactoryBot.create :user }
   let!(:topic) do
     FactoryBot.create :topic, name: 'What is your favourite colour'
   end
