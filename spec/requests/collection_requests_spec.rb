@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'Collection requests', type: :request do
@@ -20,9 +22,9 @@ RSpec.describe 'Collection requests', type: :request do
   end
 
   describe 'post#create' do
-    let(:dispatch_request) {
-      post collections_path, params: { collection: {name: 'hello'} }
-    }
+    let(:dispatch_request) do
+      post collections_path, params: { collection: { name: 'hello' } }
+    end
 
     it_behaves_like 'only logged in users'
   end
@@ -34,9 +36,9 @@ RSpec.describe 'Collection requests', type: :request do
   end
 
   describe 'put#update' do
-    let(:dispatch_request) {
-      put collection_path(collection), params: { collection: {name: 'hello'} }
-    }
+    let(:dispatch_request) do
+      put collection_path(collection), params: { collection: { name: 'hello' } }
+    end
     it_behaves_like 'only logged in users'
     it_behaves_like 'owners only'
   end

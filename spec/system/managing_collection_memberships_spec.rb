@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'managing collections memberships' do
   let!(:collection1) { FactoryBot.create :collection, name: 'Dogs and cats' }
   let!(:collection2) { FactoryBot.create :collection, name: 'Monkeys and lamas', user: collection1.user }
-  let!(:topic1){ FactoryBot.create :topic, name: 'dog topic' }
-  let!(:topic2){ FactoryBot.create :topic, name: 'cat topic' }
-  let!(:user){ collection1.user }
+  let!(:topic1) { FactoryBot.create :topic, name: 'dog topic' }
+  let!(:topic2) { FactoryBot.create :topic, name: 'cat topic' }
+  let!(:user) { collection1.user }
 
   # From Topics show page:
   scenario 'add a topic to a collection on topic show page' do
@@ -18,7 +20,7 @@ RSpec.describe 'managing collections memberships' do
     visit topic_path(topic1)
     expect(page).to have_no_content('Rabbits and hamsters')
 
-    #Can add own topic to collection
+    # Can add own topic to collection
     sign_in user
     visit topic_path(topic1)
     expect(page).to have_content('Add to collection')
@@ -29,7 +31,7 @@ RSpec.describe 'managing collections memberships' do
     expect(page).to have_content 'collection(s) successfully updated'
     expect(page).to have_field(collection1.name, checked: true, visible: false)
 
-    #can update multiple collections at once when logged in
+    # can update multiple collections at once when logged in
     find('label', text: collection1.name).click
     find('label', text: collection2.name).click
     click_button 'Update'
@@ -41,7 +43,6 @@ RSpec.describe 'managing collections memberships' do
 
   # From Collections edit page:
   scenario 'remove a topic from a collection on collection edit page' do
-
     collection1.topics << topic1
     collection1.topics << topic2
 

@@ -1,11 +1,12 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'managing topics' do
-
   let (:user) { FactoryBot.create :user }
-  let!(:topic) {
+  let!(:topic) do
     FactoryBot.create :topic, name: 'What is your favourite colour'
-  }
+  end
 
   scenario 'when viewing' do
     visit topics_path
@@ -49,10 +50,10 @@ RSpec.describe 'managing topics' do
     # can delete as the topic owner
     sign_in topic.user
     visit topic_path(topic)
-    expect {
+    expect do
       accept_confirm { click_on 'Delete Topic' }
       expect(current_path).to eq topics_path
-    }.to change(Topic, :count).by(-1)
+    end.to change(Topic, :count).by(-1)
     expect(page).to have_no_content 'What is your favourite colour'
   end
 

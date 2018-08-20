@@ -1,10 +1,8 @@
 # frozen_string_literal: true
 
 class TopicsController < ApplicationController
-
-  before_action :authenticate_user!, only: [:new, :destroy, :create, :edit, :update]
-  before_action :set_current_user_topic, only: [:update, :destroy, :edit]
-
+  before_action :authenticate_user!, only: %i[new destroy create edit update]
+  before_action :set_current_user_topic, only: %i[update destroy edit]
 
   def index
     @topics = Topic.all
@@ -51,6 +49,6 @@ class TopicsController < ApplicationController
   end
 
   def topic_params
-    params.require(:topic).permit(:name, collections_memberships_attributes: [:collection_id, :topic_id, :_destroy])
+    params.require(:topic).permit(:name, collections_memberships_attributes: %i[collection_id topic_id _destroy])
   end
 end

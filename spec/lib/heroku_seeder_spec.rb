@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 require 'heroku_seeder'
 
@@ -8,4 +10,3 @@ RSpec.describe 'heroku runner' do
     end
   end
 end
-

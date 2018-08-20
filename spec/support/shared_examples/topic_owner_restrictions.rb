@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.shared_examples 'topic owners only' do
   it 'allows topic owner' do
     login_as(topic.user, scope: :user)

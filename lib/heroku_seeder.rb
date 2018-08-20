@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 class HerokuSeeder
   def self.run
-
     user1 = User.where(
       email: 'michael@bluespot.io'
     ).first_or_create(

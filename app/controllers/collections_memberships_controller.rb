@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class CollectionsMembershipsController < ApplicationController
-
   def create
     @topic = Topic.find(params[:topic_id])
 
@@ -14,11 +13,11 @@ class CollectionsMembershipsController < ApplicationController
 
   private
 
-   def topic_params
+  def topic_params
     params.require(:topic).permit(
-      collections_memberships_attributes: [
-        :id, :collection_id, :topic_id, :_destroy
+      collections_memberships_attributes: %i[
+        id collection_id topic_id _destroy
       ]
     )
-  end
+ end
 end

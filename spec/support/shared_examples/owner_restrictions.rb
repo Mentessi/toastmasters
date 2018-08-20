@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.shared_examples 'owners only' do
   it 'allows owner' do
     login_as(user, scope: :user)

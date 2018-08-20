@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'managing collections' do
   let!(:collection1) { FactoryBot.create :collection, name: 'Dogs and cats' }
   let!(:collection2) { FactoryBot.create :collection, name: 'Rabbits and hamsters' }
-  let!(:unrelated_topic){ FactoryBot.create :topic, name: 'unrelated' }
-  let!(:topic){ FactoryBot.create :topic, name: 'dog topic' }
-  let!(:user){ collection1.user }
+  let!(:unrelated_topic) { FactoryBot.create :topic, name: 'unrelated' }
+  let!(:topic) { FactoryBot.create :topic, name: 'dog topic' }
+  let!(:user) { collection1.user }
 
   scenario 'when viewing collections' do
     visit collections_path
@@ -76,10 +78,10 @@ RSpec.describe 'managing collections' do
     # can delete when logged in
     sign_in user
     visit collection_path(collection1)
-    expect {
+    expect do
       accept_confirm { click_on 'Delete Collection' }
       expect(current_path).to eq collections_path
-    }.to change(Collection, :count).by(-1)
+    end.to change(Collection, :count).by(-1)
     expect(page).to have_no_content 'Dogs and cats'
   end
 end
