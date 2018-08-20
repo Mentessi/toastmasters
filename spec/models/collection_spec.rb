@@ -4,10 +4,10 @@ require 'rails_helper'
 
 RSpec.describe Collection, type: :model do
   describe 'associations' do
-    it { should have_many(:collections_memberships) }
-    it { should have_many(:topics) }
-    it { should belong_to(:user) }
-    it { should accept_nested_attributes_for(:collections_memberships) }
+    it { is_expected.to have_many(:collections_memberships) }
+    it { is_expected.to have_many(:topics) }
+    it { is_expected.to belong_to(:user) }
+    it { is_expected.to accept_nested_attributes_for(:collections_memberships) }
   end
 
   describe 'valildations' do
