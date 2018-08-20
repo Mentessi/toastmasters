@@ -4,13 +4,10 @@ require 'rails_helper'
 
 RSpec.describe 'managing topics' do
   let(:user) { FactoryBot.create :user }
-  let!(:topic) do
+  let!(:topic) {
     FactoryBot.create :topic, name: 'What is your favourite colour'
   }
   let!(:topics){ FactoryBot.create_list(:topic, 4) }
-
-  }
-  let!(:topics){ FactoryBot.create_list(:topic, 31) }
 
   it 'when viewing' do
     visit topics_path
@@ -18,7 +15,6 @@ RSpec.describe 'managing topics' do
     expect(page).to have_content('What is your favourite colour')
   end
 
-  it 'when creating a topic' do
   scenario 'viewing topics on different pages' do
     visit topics_path
     expect(page).to have_link '2', exact: true
