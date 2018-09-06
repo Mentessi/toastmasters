@@ -8,6 +8,7 @@ RSpec.describe 'managing collections' do
   let!(:unrelated_topic) { FactoryBot.create :topic, name: 'unrelated' }
   let!(:topic) { FactoryBot.create :topic, name: 'dog topic' }
   let!(:user) { collection1.user }
+  let!(:collections) { FactoryBot.create_list :collection, 2 }
 
   it 'when viewing collections' do
     visit collections_path
@@ -37,6 +38,7 @@ RSpec.describe 'managing collections' do
     expect(page).to have_content "Name can't be blank"
     fill_in 'Name', with: 'cat collection'
     click_button 'Create'
+    click_link '2', exact: true
     expect(page).to have_content 'cat collection'
   end
 
