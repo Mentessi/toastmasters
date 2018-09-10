@@ -1,0 +1,99 @@
+require: rubocop-rspec
+AllCops:
+  TargetRubyVersion: 2.4
+  Exclude:
+  - 'db/**/*'
+  - 'tmp/**/*'
+  - 'vendor/**/*'
+  - 'bin/**/*'
+  - 'log/**/*'
+
+Layout/AlignParameters:
+  EnforcedStyle: with_fixed_indentation
+
+Layout/MultilineMethodCallIndentation:
+  Enabled: false
+
+LetSetup:
+  Enabled: false
+
+Lint/AssignmentInCondition:
+  Enabled: false
+
+Lint/AmbiguousBlockAssociation:
+  Enabled: false
+
+Lint/HandleExceptions:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+  - 'spec/**/*'
+  - 'config/routes.rb'
+  - 'config/environments/*'
+
+Metrics/LineLength:
+  Max: 120
+  Exclude:
+  - 'spec/spec_helper.rb'
+  - 'spec/rails_helper.rb'
+  - 'config/initializers/*'
+
+Metrics/AbcSize:
+  Exclude:
+  - 'lib/heroku_seeder.rb'
+
+Metrics/MethodLength:
+  Exclude:
+  - 'lib/heroku_seeder.rb'
+
+Rails:
+  Enabled: true
+
+Rails/SkipsModelValidations:
+  Enabled: false
+
+Rails/FilePath:
+  Enabled: false
+
+RSpec/DescribeClass:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/NamedSubject:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Enabled: false
+
+Style/BlockDelimiters:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/FormatString:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/GuardClause:
+  Enabled: false
+
+Style/RegexpLiteral:
+  Enabled: false
+
+Style/TrailingCommaInArguments:
+  Enabled: false
+
+Style/TrailingCommaInHashLiteral:
+  Enabled: false

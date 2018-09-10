@@ -1,7 +1,8 @@
-class CollectionsController < ApplicationController
+# frozen_string_literal: true
 
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
-  before_action :set_current_user_collection, only: [:update, :edit, :destroy]
+class CollectionsController < ApplicationController
+  before_action :authenticate_user!, only: %i[new create edit update destroy]
+  before_action :set_current_user_collection, only: %i[update edit destroy]
 
   def index
     @collections = Collection.all
@@ -48,6 +49,10 @@ class CollectionsController < ApplicationController
   end
 
   def collection_params
-    params.require(:collection).permit(:name, :id, collections_memberships_attributes: [:id, :collection_id, :topic_id, :_destroy])
+    params.require(:collection).permit(
+      :name,
+      :id,
+      collections_memberships_attributes: %i[id collection_id topic_id _destroy]
+    )
   end
 end

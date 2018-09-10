@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.shared_examples 'only logged in users' do
   it 'doesnt allow logged out users' do
     dispatch_request
