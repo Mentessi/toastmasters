@@ -2,7 +2,9 @@
 
 FactoryBot.define do
   factory :collection do
-    name 'a collection of topics'
+    sequence :name do |n|
+      "This is my collection number # #{"%.8d" % n}"
+    end
     user
   end
 end
