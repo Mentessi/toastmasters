@@ -82,6 +82,8 @@ Rails.application.configure do
     authentication: :plain,
   }
 
+  config.x.results_per_page = 15
+
   config.action_mailer.default_url_options = { host: ENV['DEFAULT_URL_HOST'] }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to

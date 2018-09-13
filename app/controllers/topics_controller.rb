@@ -5,7 +5,7 @@ class TopicsController < ApplicationController
   before_action :set_current_user_topic, only: %i[update destroy edit]
 
   def index
-    @topics = Topic.all
+    @topics = Topic.paginate(page: params[:page], per_page: Rails.configuration.x.results_per_page)
   end
 
   def new

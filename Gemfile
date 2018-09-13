@@ -41,6 +41,9 @@ gem 'materialize-sass'
 
 gem 'rubocop', '~> 0.54.0', require: false
 
+# Pagination
+gem 'will_paginate', '~> 3.1.0'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
