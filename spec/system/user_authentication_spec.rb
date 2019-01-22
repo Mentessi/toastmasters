@@ -7,7 +7,11 @@ RSpec.describe 'authenticating users' do
 
   it 'when signing up' do
     visit '/'
-    click_on 'Sign Up'
+
+    within('.nav-wrapper') do
+      click_link 'Sign Up'
+    end
+
     fill_in 'Username', with: ''
     fill_in 'Email', with: ''
     fill_in 'Password', with: ''
@@ -21,6 +25,7 @@ RSpec.describe 'authenticating users' do
     fill_in 'Password', with: 'password'
     fill_in 'Password confirmation', with: 'password'
     click_button 'Sign up'
+
     expect(page).to have_content 'You have signed up successfully'
   end
 
@@ -35,7 +40,11 @@ RSpec.describe 'authenticating users' do
     fill_in 'Password', with: user.password
     click_button 'Log in'
     expect(page).to have_content 'Signed in successfully'
-    click_link 'Log Out'
+
+    within('.nav-wrapper') do
+      click_link 'Log Out'
+    end
+
     expect(page).to have_content 'Signed out successfully'
   end
 
@@ -55,7 +64,11 @@ RSpec.describe 'authenticating users' do
     fill_in 'Confirm new password', with: 'passw0rd'
     click_button 'Change my password'
     expect(page).to have_content 'Your password has been changed successfully'
-    click_link 'Log Out'
+
+    within('.nav-wrapper') do
+      click_link 'Log Out'
+    end
+
     expect(page).to have_content 'Signed out successfully'
     click_on 'Log In'
     fill_in 'Email', with: user.email
