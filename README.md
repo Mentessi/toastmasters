@@ -2,6 +2,14 @@
 
 # README
 
+## About
+
+Each week Toastmaster clubs meet to support people with public speaking. Part of these meetings involve club members creating 'table-topics' which are short impromptu talk topics which other attendees have to talk about for 90 seconds (with no advance preparation).
+
+This project is a site where Toastmaster members can upload and share their table topic ideas for others to use :)
+
+You can find out more about Toastmasters [here](https://www.toastmasters.org/)
+
 ## Database creation
 
 ```
@@ -25,6 +33,8 @@ Create a `.envrc` file by copying from the given example.
 cp .envrc.example .envrc
 
 ```
+## Support the project
 
+If you want to support me in building this, feel free to get in touch at email@test.com
 
 
