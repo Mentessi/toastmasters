@@ -5,7 +5,7 @@ class CollectionsController < ApplicationController
   before_action :set_current_user_collection, only: %i[update edit destroy]
 
   def index
-    @collections = Collection.all
+    @collections = Collection.paginate(page: params[:page], per_page: Rails.configuration.x.results_per_page)
   end
 
   def show

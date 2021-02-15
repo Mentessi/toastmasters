@@ -5,6 +5,6 @@ require 'rails_helper'
 RSpec.describe 'visiting home page' do
   it 'when viewing' do
     visit('/')
-    expect(page).to have_content('Welcome')
+    expect(page).to have_content('Toastmaster Topics')
   end
 end

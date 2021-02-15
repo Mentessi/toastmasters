@@ -1,9 +1,46 @@
-<h2>Welcome</h2>
-<p>
-  The time is now: <%= Time.now %>
-</p>
+<div class="section">
 
-<%= link_to 'View Topics', topics_url %>
-</br>
-<%= link_to 'View Collections', collections_url %>
-</br>
+  <h1 class="toastmasters center-align">Toastmaster Topics</h1>
+
+  <p class="flow-text">Create and share your table-topic ideas and build collections of your favourites to use during your toastmaster meetings or public speaking workshops </p>
+
+  <div class="divider"></div>
+
+  <div class="row">
+    <div class="above-video">
+      <div class="col s12">
+        <div class="video-container">
+          <iframe width="853" height="480" src="//www.youtube.com/embed/Q8TXgCzxEnw?rel=0" frameborder="0" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="row home-page-promo">
+    <div class="col s4">
+      <h4 class="center-align">Topics</h4>
+      <p class="flow-text">View topics created by toastmasters all over the world on every subject you can think of</p>
+      <%= link_to 'View Topics', topics_url, class: "waves-effect waves-teal btn-flat" %>
+    </div>
+
+    <div class="col s4">
+      <h4 class="center-align">Collections</h4>
+      <p class="flow-text">Use collections curated by our members and easily theme your next meeting or workshop</p>
+      <%= link_to 'View Collections', collections_url, class: "waves-effect waves-teal btn-flat" %>
+    </div>
+
+    <div class="col s4">
+      <h4 class="center-align">Share</h4>
+      <p class="flow-text">Sign up to share your own topics and create collections containing topics from the whole community</p>
+
+      <% if user_signed_in? %>
+        <%= link_to 'Log Out', destroy_user_session_url, method: :delete, class: "waves-effect waves-teal btn-flat" %>
+      <% else %>
+        <%= link_to 'Sign Up', new_user_registration_url, class: "waves-effect waves-teal btn-flat" %>
+      <% end %>
+
+    </div>
+  </div>
+</div>

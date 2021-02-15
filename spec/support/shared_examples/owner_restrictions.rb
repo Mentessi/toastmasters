@@ -14,7 +14,7 @@ RSpec.shared_examples 'owners only' do
 end
 
 RSpec.shared_examples 'NOT just for owners' do
-  it 'disallows users other than owner' do
+  it 'allows users other than owner' do
     login_as(FactoryBot.create(:user), scope: :user)
     expect { dispatch_request }.not_to raise_error
   end
